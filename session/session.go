@@ -69,15 +69,15 @@ func (c *Conn) read() {
 			}
 
 			data := make([]byte, uint16(binary.LittleEndian.Uint16(sizeData)))
-			fmt.Println("read header is len ", len(data))
+		
 			if _, err := io.ReadFull(c.c, data); err != nil {
 				logger.Errorf("read conn body err %v", err)
-				fmt.Println(err)
+		
 				c.m.Manager.Delete(c.Id)
 				c.Close()
 				return
 			}
-			fmt.Println("read body is ", string(data))
+			
 			c.ReadConn <- data
 		}
 	}
@@ -151,6 +151,7 @@ func (c *Conn) seq() {
 	data, err := c.hearbeat("syn_seq")
 	if err != nil {
 		logger.Errorf("marshal harbeat err %v", err)
+		return
 	}
 	c.Response <- data
 	c.Lock.Lock()
@@ -203,8 +204,8 @@ func (c *Conn) estabLished(ack string) {
 
 func GetSessions(conn net.Conn, id string, f Woodpeck) {
 	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println(err)
+		if err := recover(); err != nil {		
+			logger.Error(err)
 		}
 	}()
 	c := NewConn(conn, id)
