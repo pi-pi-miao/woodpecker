@@ -53,9 +53,9 @@ func Run(f session.Woodpeck, file string) {
 	go pkg.Wrapper(w.InitSessionID)
 	w.file = file
 	w.InitConfig().
-		InitLogger().
-		InitSession().
-		run()
+	  InitLogger().
+	  InitSession().
+	  run()
 }
 
 func (w *Woodpecher) Close() {
