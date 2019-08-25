@@ -24,10 +24,8 @@ func (w *Woodpecher) InitSessionID() {
 }
 
 func (w *Woodpecher) InitConfig() *Woodpecher {
-	// todo 要去掉
 	if len(w.file) == 0 {
-		//panic("config file is null")
-		w.file = "D:/project/src/woodpecker/conf/config.toml"
+		panic("config file is null")
 	}
 	configBytes, err := ioutil.ReadFile(w.file)
 	if err != nil {
