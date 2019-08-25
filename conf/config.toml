@@ -1,0 +1,16 @@
+[Config]
+Ip = "127.0.0.1"
+Port = 8080
+NetWork = "tcp"
+PprofAddr = "127.0.0.1:10000"
+ReadTimeout = 10
+WriteTimeout = 10
+IdleTimeout  = 10
+Lenth        = 10
+Env          = "test"   #test 测试   pro生产环境
+
+[Log]
+LogLevel = "debug"
+LogFile = "./woodpecker.log"
+IsDebug = 1
+DingUrl = "http://"
