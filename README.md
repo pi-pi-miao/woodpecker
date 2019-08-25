@@ -56,14 +56,6 @@ import (
 	"fmt"
 )
 
-type Message struct {
-	Route string      `json:"route"`
-	Id    int64	      `json:"id"`
-	Method string	  `json:"method"`
-	Data   []byte     `json:"data"`
-	Hearbeat string   `json:"hearbeat"`
-}
-
 type data struct {
 	D string  `json:"d"`
 }
