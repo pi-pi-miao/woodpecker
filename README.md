@@ -1,4 +1,4 @@
- ![image](https://github.com/PyreneGitHub/woodpecker/blob/master/woodpecker.png)
+ ![image](https://github.com/PyreneGitHub/woodpecker/blob/master/woodpecker.png?raw=true)
 
 
 

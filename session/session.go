@@ -50,7 +50,6 @@ func (c *Conn) Start() {
 	go pkg.Wrapper(c.read)
 	go pkg.Wrapper(c.do)
 	go pkg.Wrapper(c.write)
-	go c.write()
 	go pkg.Wrapper(c.synSend)
 	go pkg.Wrapper(c.check)
 }
