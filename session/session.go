@@ -136,6 +136,7 @@ func (c *Conn) synSend() {
 		case <-t.C:
 			if c.tryNum >= 3 {
 				c.Close()
+				t.Stop()
 				return
 			}
 			c.seq()
@@ -168,6 +169,7 @@ func (c *Conn) check() {
 	for {
 		select {
 		case <-c.stop:
+			t.Stop()
 			return
 		case <-t.C:
 			if c.tryNum >= 3 {
