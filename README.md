@@ -56,10 +56,6 @@ import (
 	"fmt"
 )
 
-var (
-	m = make(map[int64]bool)
-)
-
 type Message struct {
 	Route string      `json:"route"`
 	Id    int64	      `json:"id"`
