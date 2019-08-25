@@ -87,8 +87,8 @@ func (w *Woodpecher) run() {
 					go session.GetSessions(conn, <-pkg.SessionIdCh, w.Fn)
 					continue
 				}
-				logger.Error(err)
-				continue
+				logger.Errorf("accept err",err)
+				return
 			}
 		}
 	}
