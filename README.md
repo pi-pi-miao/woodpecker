@@ -37,6 +37,7 @@ func (s *server)Do(c *session.Conn,message *pkg.Message){
 func main(){
 	flag.Parse()
 	woodpecker.Run(&server{},*f)
+	select{}
 }
 ```
 
