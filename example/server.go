@@ -1,37 +1,35 @@
 package main
 
 import (
-	"woodpecker"
-	"woodpecker/session"
-	"woodpecker/pkg"
-	"fmt"
-	"woodpecker/pkg/json"
 	"flag"
+	"fmt"
+	"woodpecker"
+	"woodpecker/pkg"
+	"woodpecker/pkg/json"
+	"woodpecker/session"
+	"time"
 )
 
-
 var (
-	f = flag.String("f","","")
+	f = flag.String("f", "", "")
 )
 
 type server struct {
-
 }
 
-func (s *server)Do(c *session.Conn,message *pkg.Message){
-	fmt.Println("get message is ",message)
+func (s *server) Do(c *session.Conn, message *pkg.Message) {
 	message.Data = []byte("1111")
-	data ,err := json.Marshal(message)
+	data, err := json.Marshal(message)
 	if err != nil {
-		fmt.Println("server marshal err",err)
+		fmt.Println("server marshal err", err)
 		return
 	}
-	fmt.Println("len is ",len(data))
 	c.Write(data)
-	fmt.Println("send client ok")
 }
 
-func main(){
+func main() {
 	flag.Parse()
-	woodpecker.Run(&server{},*f)
+	w := woodpecker.Run(&server{}, *f)
+	time.Sleep(5*time.Second)
+	w.Close()
 }

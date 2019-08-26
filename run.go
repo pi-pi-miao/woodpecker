@@ -40,7 +40,7 @@ type log struct {
 	DingUrl  string
 }
 
-func Run(f session.Woodpeck, file string) {
+func Run(f session.Woodpeck, file string)*Woodpecher {
 	if f == nil {
 		panic("please input logic function")
 	}
@@ -54,12 +54,15 @@ func Run(f session.Woodpeck, file string) {
 	w.file = file
 	w.InitConfig().
 	  InitLogger().
-	  InitSession().
-	  run()
+	  InitSession()
+	go pkg.Wrapper(w.run)
+	return w
 }
 
 func (w *Woodpecher) Close() {
 	w.Once.Do(func() {
+		close(w.Stop)
+		close(pkg.SessionIdCh)
 		pkg.Sessions.Manager.EachItem(func(item *safe_map.Item) {
 			item.Value.(*session.Conn).Close()
 		})
