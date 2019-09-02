@@ -124,6 +124,7 @@ func (c *Conn) Close() {
 		close(c.stop)
 		close(c.Response)
 		close(c.ReadConn)
+		c.c.Close()
 	})
 }
 
